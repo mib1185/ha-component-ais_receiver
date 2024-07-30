@@ -1,0 +1,16 @@
+{
+  "title": "AIS Receiver",
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "port": "UDP-Port auf welchem Nachrichten empfangen werden",
+          "mmsis": "Liste von MMSIs auf welche gefiltert werden soll"
+        }
+      }
+    },
+    "abort": {
+      "reconfigure_successful": "Neu Konfiguration erfolgreich"
+    }
+  }
+}

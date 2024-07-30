@@ -1,0 +1,12 @@
+{
+  "domain": "ais_receiver",
+  "name": "AIS receiver",
+  "codeowners": ["@mib1185"],
+  "config_flow": true,
+  "documentation": "https://github.com/mib1185/ha-component-ais_receiver",
+  "issue_tracker": "https://github.com/mib1185/ha-component-ais_receiver/issues",
+  "iot_class": "local_push",
+  "loggers": ["pyais"],
+  "requirements": ["pyais==2.7.0"],
+  "version": "0.0.1b0"
+}
