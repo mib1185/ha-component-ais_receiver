@@ -30,6 +30,9 @@ class AisReceiverTrackerEntity(TrackerEntity):
         self._attr_icon = "mdi:ferry"
         self._attr_extra_state_attributes = {}
 
+        self.latitude: float | None = None
+        self.longitude: float | None = None
+
     @property
     def device_info(self) -> DeviceInfo:
         """Return the device information."""
