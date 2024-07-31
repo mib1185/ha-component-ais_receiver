@@ -24,3 +24,8 @@ press the Download button in the buttom right corner
 
 - download the source code asset from the [release page](https://github.com/mib1185/ha-component-ais_receiver/releases)
 - extract the downloaded archive and copy the `custom_components/ais_receiver` folder into the `custom_components` folder on your HA system.
+
+---
+You like my work?
+
+<a href="https://www.buymeacoffee.com/mib1185" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
