@@ -29,14 +29,24 @@ class AisReceiverTrackerEntity(TrackerEntity):
         self._attr_name = mmsi
         self._attr_icon = "mdi:ferry"
         self._attr_extra_state_attributes = {}
-
-        self.latitude: float | None = None
-        self.longitude: float | None = None
+        self._latitude: float | None = None
+        self._longitude: float | None = None
 
     @property
     def device_info(self) -> DeviceInfo:
         """Return the device information."""
         return DeviceInfo(identifiers={(DOMAIN, self._mmsi)})
+
+    @property
+    def latitude(self) -> float | None:
+        """Return latitude value of the device."""
+        return self._latitude
+
+    @property
+    def longitude(self) -> float | None:
+        """Return longitude value of the device."""
+        return self._longitude
+
 
     @property
     def source_type(self) -> SourceType:
@@ -47,8 +57,8 @@ class AisReceiverTrackerEntity(TrackerEntity):
         """Update data from received message."""
         msg = event.data
         if msg.get("msg_type") in [1, 2, 3]:
-            self.latitude = msg.get("lat")
-            self.longitude = msg.get("lon")
+            self._latitude = msg.get("lat")
+            self._longitude = msg.get("lon")
 
         if msg.get("msg_type") == 5:
             self._attr_extra_state_attributes["shipname"] = msg.get("shipname")
