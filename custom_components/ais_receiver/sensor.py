@@ -1,5 +1,7 @@
 """Sensors for AIS receiver."""
 
+from pyais.constants import NavigationStatus
+
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
@@ -15,7 +17,10 @@ from .const import CONF_MMSIS, DOMAIN
 
 SENSORS: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
-        key="turn", name="turn", entity_registry_enabled_default=False
+        key="course", name="course", entity_registry_enabled_default=False
+    ),
+    SensorEntityDescription(
+        key="heading", name="heading", entity_registry_enabled_default=False
     ),
     SensorEntityDescription(
         key="speed",
@@ -24,10 +29,13 @@ SENSORS: tuple[SensorEntityDescription, ...] = (
         native_unit_of_measurement=UnitOfSpeed.KNOTS,
     ),
     SensorEntityDescription(
-        key="course", name="course", entity_registry_enabled_default=False
+        key="status",
+        name="status",
+        device_class=SensorDeviceClass.ENUM,
+        options={status.name for status in NavigationStatus},
     ),
     SensorEntityDescription(
-        key="heading", name="heading", entity_registry_enabled_default=False
+        key="turn", name="turn", entity_registry_enabled_default=False
     ),
 )
 
@@ -69,6 +77,8 @@ class AisReceiverSensorEntity(SensorEntity):
         ):
             if self.entity_description.key == "speed":
                 value = value / 10
+            if self.entity_description.key == "status":
+                value = NavigationStatus(value).name
             self._attr_native_value = value
 
         if msg.get("msg_type") == 5:
